@@ -19,8 +19,21 @@ body {
 .todo-list-table thead th:nth-of-type(4) {
   width: 90px;
 }
-.todo-list-table thead th:nth-of-type(5) {
-  width: 110px;
+@media (min-width: 768px) {
+  .todo-list-table thead th:nth-of-type(5) {
+    width: 110px;
+  }
+  .action-icon {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .todo-list-table thead th:nth-of-type(5) {
+    width: 60px;
+  }
+  .action-text {
+    display: none;
+  }
 }
 .todo-list-table tbody tr:nth-of-type(2n) {
   background-color: #FFFFFF;
