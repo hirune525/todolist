@@ -4,11 +4,24 @@ body {
 
 .todo-list-table {
   position: relative;
+  table-layout: fixed;
+  min-width: 420px;
 }
 .todo-list-table thead tr {
   background-color: #FFFFFF;
 }
-
+.todo-list-table thead th:nth-of-type(1) {
+  width: 50px;
+}
+.todo-list-table thead th:nth-of-type(3) {
+  width: 105px;
+}
+.todo-list-table thead th:nth-of-type(4) {
+  width: 90px;
+}
+.todo-list-table thead th:nth-of-type(5) {
+  width: 110px;
+}
 .todo-list-table tbody tr:nth-of-type(2n) {
   background-color: #FFFFFF;
 }
@@ -29,10 +42,12 @@ body {
 
 .todo-list-table>thead>tr>th,
 .todo-list-table>tbody>tr>td {
+  vertical-align: middle;
+}
+.todo-list-table>tbody>tr>td:nth-of-type(2)>div {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  vertical-align: middle;
 }
 
 /*
