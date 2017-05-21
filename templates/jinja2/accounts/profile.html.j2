@@ -1,0 +1,11 @@
+{% extends "base.html.j2" %}
+
+{% block title %}
+  プロフィール
+{% endblock %}
+
+{% block content %}
+  <h3 class="page-header">プロフィール</h3>
+  <p>ユーザ名：{{ user.username }}</p>
+  <a href="{{ url('accounts:logout') }}">ログアウト</a>
+{% endblock %}

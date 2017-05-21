@@ -1,0 +1,60 @@
+{% extends "base.html.j2" %}
+
+{% block extrahead %}
+  <script src="{{ static('src/js/todo_list.js') }}?ver={{ now().strftime('%s') }}"></script>
+{% endblock %}
+
+{% block title %}
+TODO一覧
+{% endblock %}
+
+{% block content %}
+  <table class="table table-bordered todo-list-table">
+    <thead>
+      <tr>
+        <th class="col-md-1"><div class="text-center">完了</div></th>
+        <th class="col-md-6"><div class="text-center">タスク</div></th>
+        <th class="col-md-2"><div class="text-center">優先度</div></th>
+        <th class="col-md-2"><div class="text-center">期限</div></th>
+        <th class="col-md-1"><div class="text-center">操作</div></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo in todos %}
+        <tr data-id="{{todo.id}}" data-enabled="{{ todo.is_done|lower() }}">
+          <td class="col-is-done">
+            <div class="text-center">
+              <input class="is-done" type="checkbox"
+                {% if todo.is_done %}checked{% endif%} />
+            </div>
+          </td>
+          <td class="col-task">
+            <div class="text-center">
+              {{ todo.task }}
+            </div>
+          </td>
+          <td class="col-priority">
+            <div class="text-center">
+              {% for i in range(todo.priority) %}
+                ★
+              {% endfor %}
+            </div>
+          </td>
+          <td class="col-limit-date">
+            <div class="text-center">{{
+              todo.limit_date.strftime('%Y/%m/%d') }}
+            </div>
+          </td>
+          <td class="col-action" ignore>
+            <div class="text-center">
+              <a class="btn btn-primary" role="button"
+                href="{{ url('todo:edit', args=[todo.id]) }}">
+                詳細/編集
+              </a>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}

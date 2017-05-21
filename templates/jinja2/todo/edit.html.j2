@@ -1,0 +1,41 @@
+{% extends "base.html.j2" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block content %}
+<div class="input-fields">
+  <form
+    action="{% if todo_id %}
+      {{ url('todo:edit', args=[todo_id]) }}
+    {% else %}
+      {{ url('todo:add') }}
+    {% endif %}" method="post" role="form">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    <div class="form-group">
+      {{ form.task.label_tag() }}
+      {{ form.task }}
+    </div>
+    <div class="form-group">
+      {{ form.contents.label_tag() }}
+      {{ form.contents }}
+    </div>
+    <div class="form-group">
+      {{ form.priority.label_tag() }}
+      {{ form.priority }}
+    </div>
+    <div class="form-group">
+      {{ form.limit_date.label_tag() }}
+      {{ form.limit_date }}
+    </div>
+    <div class="checkbox">
+      <label>
+        {{ form.is_done }}
+        完了
+      </label>
+    </div>
+    <button class="btn btn-primary btn-lg pull-right" type="submit" name="action" value="save">保存</button>
+  </form>
+</div>
+{% endblock content %}
